@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+
+        }
+        .gan{
+            height: 100vh;
+            width: 100vw;
+            border: 2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: aquamarine;
+        }
+        .main{
+            width:50%;
+            height: 50%;
+            /* border: 2px solid green; */
+            display: flex;
+            justify-content: center;
+            background-color: azure;
+        }
+        #number{
+            width:300px;
+            height: 50px;
+            margin: 2px;
+        }
+        #btn{
+            width:300px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="gan">
+        <div class="main">
+            <form action="" id="form">
+                <input type="text" id="number" placeholder="enter your number">
+                <br>
+                <br>
+                <input type="submit" id="btn" value="submit">
+            </form>
+            <div id="ans">
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    function numberReverse(number){
+        // let result=number.toString().split('').reverse().join('');
+        let result=0
+        while(number!=0){
+            let re=number%10
+            result=result*10+re;
+            number=parseInt(number/10)
+        }
+        return result;
+    }
+    let d=document.createElement("h2");
+    document.querySelector("#form").addEventListener('submit',function(e){
+        e.preventDefault();
+        let number=parseInt(document.querySelector("#number").value);
+        let reverse=numberReverse(number);
+        // console.log(reverse)
+        // console.log(number)
+        
+        d.innerHTML=reverse; 
+        console.log(d);
+        document.querySelector("#ans").appendChild(d)
+        h2.innerHTML=""
+        reverse=0;
+        number.value=""
+    })
+</script>
+</html>
