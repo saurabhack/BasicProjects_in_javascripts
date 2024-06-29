@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        #main{
+            height: 100vh;
+            width: 100vw;
+            border:2px solid black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: aquamarine;
+        }
+        #box{
+            width:50%;
+            height: 50%;
+            /* border: 2px solid black; */
+            background-color: aliceblue;
+            
+            /* align-items: center; */
+        }
+
+        #number{
+            width: 50%;
+            height: 30px;
+        }
+        #btn{
+            width: 50%;
+            height: 30px;
+        } 
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="box">
+            <form id="myform">
+                <input type="text" placeholder="enter your name" id="number">
+                <br>
+                <input type="submit" value="submit" id="btn">
+            </form>
+            <br>
+            <div id="ans">
+
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    let h2=document.createElement("h2")
+
+    function palidrome(number){
+        let reverse=0;
+        let copy=number;
+        while(number!=0){
+            let re=number%10;
+            reverse=reverse*10+re;
+            number=parseInt(number/10);
+        }
+        if(copy==reverse){
+            return "yess number is palidrome";
+        }else{
+            return "number is not palidrome";
+        }
+    }
+
+    let ans="";
+
+document.querySelector("#myform").addEventListener("submit",function(e){
+    e.preventDefault();
+    let number=parseInt(document.querySelector("#number").value)
+    ans=palidrome(number)
+    h2.innerHTML=ans
+    let div=document.querySelector("#ans")
+    div.appendChild(h2);
+    ans=" ";
+})
+</script>
+</html>
