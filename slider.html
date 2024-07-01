@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .action{
+            width:100vw;
+            height: 100vh;
+            /* border: 2px solid black; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .box{
+            width: 50%;
+            height: 50%;
+            /* border: 2px solid black; */
+
+        }
+        .main{
+            width: 100%;
+            background-color: rgb(220, 185, 185);
+            height: 10%;
+        }
+        #manage{
+            
+            /* background-color: rgb(136, 140, 136); */
+            height: 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="action">
+    <div class="box">
+    <div id="forms">
+        <form id="myform">
+            <input type="text" id="numbers">
+            <input type="submit" value="apply">
+        </form>
+    </div>
+    <br>
+    <br>
+    <div class="main">
+        <div id="manage">
+
+        </div>
+    </div>
+</div>
+</div>
+</body>
+<script>
+    let colorManage=document.querySelector("#manage")
+    document.querySelector("#myform").addEventListener("submit",function(e){
+        e.preventDefault();
+        let val=document.querySelector("#numbers").value;
+        console.log(val)
+        if(val<=100){
+            val+="%";
+            colorManage.style.width=val
+            colorManage.style.backgroundColor="rgb(136, 140, 136)"
+        }
+        val=""
+    })
+</script>
+</html>
