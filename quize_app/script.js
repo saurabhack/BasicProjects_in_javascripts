@@ -1,45 +1,95 @@
-let arr=[{
-    q:"what is html",
-    a:"programming language",
-    b:"database language",
-    c:"no sql language",
-    d:"markup language",
-    corr:"markup language"
-},
-{
-    q:"what is the full form of DBMS",
-    a:"database object Model",
-    b:"Database Management System",
-    c:"Networking Language",
-    d:"third class language",
-    corr:"Database Management System"
-},
-{
-    q:"what is javascript",
-    a:"machine level language",
-    b:"javascript",
-    c:"client side language",
-    d:"first language",
-    corr:"client size language"
-}]
+let questionsSet = [
+    {
+        que: "which language is interpreted language",
+        ans:[
+            "java",
+            "javascript",
+            "go",
+            "mongdb",
+        ],
+        currect:"javascript"            
+    },
+    {
+        que: "which is client side language",
+        ans:[
+            "java",
+        "javascript",
+        "go",
+        "mongdb"
+        ],
+        currect:"javascript"
+    },
+    {
+        que: "which is the database framework",
+        ans:[
+            "java",
+        "mysql",
+        "mongoDb",
+        "sql"
+        ],
+        currect:"mongoDb"
+    }
+]
 
-let formula=document.querySelector("#formula")
-
-function showQuestions(arr){
-    formula.innerHTML=`<h3>Q1) ${arr.q} </h3>
-            <br>
-            <input type="radio" for="first" name="first" value="${arr.a}">
-            <label for="first">${arr.a}</label><br>
-            
-            <input type="radio" for="second" name="first" value="${arr.b}">
-            <label for="second">${arr.b}</label><br>
-            <input type="radio" for="third" name="first" value="${arr.c}">
-            <label for="third">${arr.c}</label><br>
-            <input type="radio" for="third" name="first" value="${arr.d}">
-            <label for="third">${arr.d}</label><br>
-            <input id="sub" type="submit" value="submit">`;
+let questions=document.querySelector("#question")
+let answer=document.querySelector("#answer-buttons")
+let buttonNext=document.querySelector("#next-btn")
+let currentIndex=0
+let score=0
+console.log("hello world")
+function start(){
+    currentIndex=0
+    score=0
+    showQuestions()
+}
+var cans;
+function showQuestions(){
+    reset()
+    let currentQuestion=currentIndex+1
+    questions.innerHTML=currentQuestion+`,`+questionsSet[currentIndex].que
+    let buttons=document.createElement('button')
+    let arr=questionsSet[currentIndex].ans
+    for(let i=0;i<arr.length;i++){
+        let buttons=document.createElement('button')
+        buttons.innerHTML=arr[i]
+        buttons.classList="btn"
+        answer.appendChild(buttons)
+        buttons.setAttribute('onclick','evaluation(this)')
+    }
+    cans=currentIndex
+    currentIndex=currentIndex+1
 }
 
-document.querySelector("#fromula").addEventListener("submit",function(){
+function evaluation(e){
+    let btn=e
+    btn.style.backgroundColor = 'green'
+    btn.style.color='white'
+    let res=btn.textContent
+    console.log(e)
+    if(res==questionsSet[cans].currect){
+        score++;
+    }
+    buttonNext.style.display="block"
+    buttonNext.addEventListener('click',nextPage)
+}
+function nextPage(e){
+    if(currentIndex<questionsSet.length){
+        reset()
+        showQuestions()
+    }else{
+        result()
+    }
+}
+function result(){
+    reset()
+    questions.innerHTML=`your score ${questionsSet.length} out of ${score}`
+    buttonNext.style.display='none'
 
-})
+}
+
+function reset(){
+    while(answer.firstChild){
+        answer.removeChild(answer.firstChild)
+    }
+}
+start()
